@@ -1,8 +1,24 @@
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.layout.GridPane?>
+<?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<GridPane fx:controller="sample.Controller"
-          xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
-</GridPane>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <Label prefHeight="72.0" prefWidth="197.0" text="Black Forest" textAlignment="CENTER" BorderPane.alignment="CENTER">
+         <font>
+            <Font size="32.0" />
+         </font>
+      </Label>
+   </top>
+   <center>
+      <Button mnemonicParsing="false" text="Black Forest" textAlignment="CENTER" BorderPane.alignment="CENTER">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+   </center>
+</BorderPane>
