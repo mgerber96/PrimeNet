@@ -17,11 +17,11 @@ public class Main extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage LoginforPrimeNet) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("LoginWindow.fxml"));
-        primaryStage.setTitle("PrimeNet");
-        primaryStage.setScene(new Scene(root, 800  , 600));
-        primaryStage.show();
+        LoginforPrimeNet.setTitle("Login for PrimeNet");
+        LoginforPrimeNet.setScene(new Scene(root, 300  , 300));
+        LoginforPrimeNet.show();
 
 
     }
