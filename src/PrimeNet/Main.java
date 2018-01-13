@@ -1,19 +1,14 @@
-package sample;
+package PrimeNet;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-
-import java.awt.*;
 
 
 public class Main extends Application {
 
-    Button button;
 
 
     public static void main(String[] args)
@@ -23,12 +18,11 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("LoginWindow.fxml"));
         primaryStage.setTitle("PrimeNet");
-        primaryStage.setScene(new Scene(root, 800, 500));
+        primaryStage.setScene(new Scene(root, 800  , 600));
         primaryStage.show();
 
-        Button button = new Button();
 
     }
 }
