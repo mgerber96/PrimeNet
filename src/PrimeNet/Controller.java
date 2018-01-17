@@ -21,7 +21,7 @@ import java.awt.*;
 
 public class Controller {
 
-    public ComboBox Kategorien;
+    public ComboBox<String> Kategorien;
     @FXML
     private javafx.scene.control.Label LabelStatus;
     @FXML
