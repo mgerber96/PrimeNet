@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
-
+    public static Stage PrimeNet;
 
     public static void main(String[] args)
     {
@@ -19,12 +19,12 @@ public class Main extends Application {
     }
 
     @Override
-    public void start(Stage LoginforPrimeNet) throws Exception{
+    public void start(Stage PrimeNet) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("LoginWindow.fxml"));
-        LoginforPrimeNet.setTitle("Login for PrimeNet");
-        LoginforPrimeNet.setScene(new Scene(root, 300  , 300));
-        LoginforPrimeNet.show();
-
+        PrimeNet.setTitle("Login for PrimeNet");
+        PrimeNet.setScene(new Scene(root, 300  , 300));
+        PrimeNet.show();
+        this.PrimeNet = PrimeNet;
 
     }
 

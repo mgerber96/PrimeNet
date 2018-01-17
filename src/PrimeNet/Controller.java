@@ -3,7 +3,7 @@ package PrimeNet;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
@@ -39,11 +39,10 @@ public class Controller {
 
             LabelStatus.setText("Login Succesfull");
 
-            Stage PrimeNet = new Stage();
             Parent root = FXMLLoader.load(getClass().getResource("MainWindow.fxml"));
-            PrimeNet.setTitle("PrimeNet");
-            PrimeNet.setScene(new Scene(root, 800  , 600));
-            PrimeNet.show();
+            Main.PrimeNet.setTitle("PrimeNet");
+            Main.PrimeNet.setScene(new Scene(root, 800  , 600));
+            Main.PrimeNet.show();
 
         }else{ LabelStatus.setText("Login Failed");} }
 
