@@ -7,11 +7,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.*;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -25,16 +24,13 @@ public class Controller implements Initializable {
 
 
     public ComboBox<String> Categories;
-    @FXML
-    private javafx.scene.control.Label LabelStatus;
-    @FXML
-    private javafx.scene.control.TextField TextUserName;
-    @FXML
-    private javafx.scene.control.TextField TextPassword;
-
-
-
-
+    public TableColumn Movietitle;
+    public TableColumn year;
+    public TableColumn Fav;
+    public TableColumn Remember;
+    public Label LabelStatus;
+    public PasswordField TextPassword;
+    public TextField TextUserName;
 
 
     //Methode zur Anmeldung
