@@ -12,6 +12,8 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
 <Pane style="-fx-background-color: #00FFFF#00FFFF;" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PrimeNet.Controller">
    <children>
       <Text layoutX="340.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PrimeNet" textAlignment="CENTER" wrappingWidth="135.12890625">
@@ -31,7 +33,15 @@
       <Line endY="420.0" layoutX="409.0" layoutY="79.0" startY="-20.0" />
       <Text layoutX="23.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Suche:" wrappingWidth="42.87630081176758" />
       <Text layoutX="22.0" layoutY="112.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Kategorie: " />
-      <ComboBox fx:id="Categories" layoutX="127.0" layoutY="94.0" prefHeight="27.0" prefWidth="227.0" promptText="Wähle eine Kategorie aus" />
+      <ComboBox fx:id="Categories" layoutX="127.0" layoutY="94.0" prefHeight="27.0" prefWidth="227.0" promptText="Wähle eine Kategorie aus">
+         <items>
+            <FXCollections fx:factory="observableArrayList">
+               <String fx:value="Action" />
+               <String fx:value="Comedy" />
+               <String fx:value="Fantasy" />
+            </FXCollections>
+         </items>
+      </ComboBox>
       <ImageView fitHeight="111.0" fitWidth="67.0" layoutX="410.0" layoutY="375.0" pickOnBounds="true" preserveRatio="true" />
       <Button layoutX="295.0" layoutY="204.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="90.0" text="Suchen" />
       <Button layoutX="18.0" layoutY="200.0" mnemonicParsing="false" text="Favoriten" />
