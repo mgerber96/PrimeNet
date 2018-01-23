@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
@@ -12,8 +14,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<?import javafx.collections.FXCollections?>
-<?import java.lang.String?>
 <Pane style="-fx-background-color: #00FFFF#00FFFF;" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PrimeNet.Controller">
    <children>
       <Text layoutX="340.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PrimeNet" textAlignment="CENTER" wrappingWidth="135.12890625">
@@ -22,12 +22,13 @@
          </font>
       </Text>
       <Line endY="430.0" layoutX="399.0" layoutY="69.0" startY="-10.0" />
-      <TableView layoutX="14.0" layoutY="254.0" prefHeight="237.0" prefWidth="376.0" tableMenuButtonVisible="true">
+      <TableView fixedCellSize="0.0" layoutX="14.0" layoutY="254.0" prefHeight="237.0" prefWidth="376.0">
         <columns>
-          <TableColumn fx:id="Movietitle" maxWidth="200.0" prefWidth="76.0" text="Filmtitel" />
-          <TableColumn fx:id="year" maxWidth="200.0" prefWidth="82.0" text="Jahr" />
-            <TableColumn fx:id="Fav" prefWidth="134.0" text="Favorit" />
-            <TableColumn fx:id="Remember" prefWidth="83.0" text="Merken" />
+           <TableColumn fx:id="Fav" maxWidth="20.0" text="*" />
+          <TableColumn fx:id="Filmtitel" maxWidth="200.0" prefWidth="158.0" text="Filmtitel" />
+           <TableColumn fx:id="Kategorie" prefWidth="111.0" text="Kategorie" />
+          <TableColumn fx:id="Jahr" maxWidth="135.0" prefWidth="34.0" text="Jahr" />
+            <TableColumn fx:id="Merken" prefWidth="52.0" text="Merken" />
         </columns>
       </TableView>
       <Line endY="420.0" layoutX="409.0" layoutY="79.0" startY="-20.0" />
@@ -37,14 +38,24 @@
          <items>
             <FXCollections fx:factory="observableArrayList">
                <String fx:value="Action" />
-               <String fx:value="Comedy" />
-               <String fx:value="Fantasy" />
+               <String fx:value="Abenteuer" />
+               <String fx:value="Animation" />
+               <String fx:value="Drama" />
+               <String fx:value="Familie" />
+               <String fx:value="Fantasie" />
+               <String fx:value="Historie" />
+               <String fx:value="Horror" />
+               <String fx:value="Kriegsfilm" />
+               <String fx:value="Krimi" />
+               <String fx:value="Komödie" />
+               <String fx:value="Liebesfilm" />
+               <String fx:value="Science Fiction" />
             </FXCollections>
          </items>
       </ComboBox>
       <ImageView fitHeight="111.0" fitWidth="67.0" layoutX="410.0" layoutY="375.0" pickOnBounds="true" preserveRatio="true" />
       <Button layoutX="295.0" layoutY="204.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="90.0" text="Suchen" />
-      <Button layoutX="18.0" layoutY="200.0" mnemonicParsing="false" text="Favoriten" />
+      <Button layoutX="18.0" layoutY="206.0" mnemonicParsing="false" text="Favoriten" />
       <Button layoutX="164.0" layoutY="204.0" mnemonicParsing="false" text="Merkliste" />
       <Label layoutX="450.0" layoutY="74.0" text="Filmtitel">
          <font>

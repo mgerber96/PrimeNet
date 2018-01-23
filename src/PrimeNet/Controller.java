@@ -24,13 +24,14 @@ public class Controller implements Initializable {
 
 
     public ComboBox<String> Categories;
-    public TableColumn Movietitle;
-    public TableColumn year;
+    public TableColumn Filmtitel;
+    public TableColumn Jahr;
     public TableColumn Fav;
-    public TableColumn Remember;
+    public TableColumn Merken;
     public Label LabelStatus;
     public PasswordField TextPassword;
     public TextField TextUserName;
+    public TableColumn Kategorie;
 
 
     //Methode zur Anmeldung
@@ -57,7 +58,6 @@ public class Controller implements Initializable {
     }
 
 
-    //Führt Default-Werte beim Start aus (zb. füllen von Tabellen etc.)
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
