@@ -39,6 +39,7 @@ public class Controller implements Initializable {
                 "Historie", "Horror", "Kriegsfilm", "Krimi", "Komödie", "Liebesfilm", "Science Fiction");
     }
 
+
     //Methode zur Anmeldung
     public void Login(javafx.event.ActionEvent event) throws Exception {
 
