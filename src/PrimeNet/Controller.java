@@ -22,8 +22,8 @@ import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
 
-
-    public ComboBox<String> Categories;
+    @FXML
+    public ComboBox<String> categories;
     public TableColumn Filmtitel;
     public TableColumn Jahr;
     public TableColumn Fav;
@@ -33,6 +33,11 @@ public class Controller implements Initializable {
     public TextField TextUserName;
     public TableColumn Kategorie;
 
+    //Die Combobox mit Kategorien füllen
+    public void fillCombo(){
+        categories.getItems().addAll("Action","Abenteuer", "Animation", "Drama", "Familie", "Fantasie",
+                "Historie", "Horror", "Kriegsfilm", "Krimi", "Komödie", "Liebesfilm", "Science Fiction");
+    }
 
     //Methode zur Anmeldung
     public void Login(javafx.event.ActionEvent event) throws Exception {
