@@ -11,6 +11,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
@@ -37,23 +38,30 @@ public class Controller implements Initializable {
     TableColumn<Film, Integer> yearColumn = new TableColumn<>("Jahr");
     @FXML
     TableColumn<Film, Boolean> favouriteColumn = new TableColumn<>("Favorit");
+    @FXML
+    TableColumn<Film, Boolean> checkboxColumn = new TableColumn<>("Checkbox");
+
+
 
 
     //login with username and password
     public void Login(javafx.event.ActionEvent event) throws Exception {
 
-        if (TextUserName.getText().equals("") &&  TextPassword.getText().equals ("") ) {
+        if (TextUserName.getText().equals("") && TextPassword.getText().equals("")) {
 
             LabelStatus.setText("Login Succesfull");
 
             Parent root = FXMLLoader.load(getClass().getResource("MainWindow.fxml"));
             Stage PrimeNet = new Stage();
             PrimeNet.setTitle("PrimeNet");
-            PrimeNet.setScene(new Scene(root, 800  , 600));
+            PrimeNet.setScene(new Scene(root, 800, 600));
             PrimeNet.show();
             Main.Login.close();
 
-        }else{ LabelStatus.setText("Login Failed");} }
+        } else {
+            LabelStatus.setText("Login Failed");
+        }
+    }
 
     //function of the reset button in login menu
     public void Reset(javafx.event.ActionEvent event) {
@@ -64,7 +72,7 @@ public class Controller implements Initializable {
     }
 
     //if enter is pressed table of film will be filled
-    public void onEnter(){
+    public void onEnter() {
         System.out.println("it works");
         searchField.clear();
 
@@ -76,24 +84,32 @@ public class Controller implements Initializable {
 
         //favouriteColumn
         favouriteColumn.setCellValueFactory(new PropertyValueFactory<>("favourite"));
+        favouriteColumn.setCellFactory(CheckBoxTableCell.forTableColumn(favouriteColumn));
+        favouriteColumn.setEditable(true);
+
+        //checkboxColumn
+        checkboxColumn.setCellValueFactory(new PropertyValueFactory<>("checkbox"));
+        checkboxColumn.setCellFactory(CheckBoxTableCell.forTableColumn(checkboxColumn));
+        checkboxColumn.setEditable(true);
+
 
         tableofFilm.setItems(getFilm());
-        tableofFilm.getColumns().addAll(titleColumn, yearColumn, favouriteColumn);
+        tableofFilm.getColumns().addAll(titleColumn, yearColumn, favouriteColumn, checkboxColumn);
     }
 
-    public ObservableList<Film> getFilm(){
+    public ObservableList<Film> getFilm() {
         ObservableList<Film> films = FXCollections.observableArrayList();
-        films.add(new Film("Legend of Tarzan", 2016, true));
-        films.add(new Film("Zoomania", 2017, false));
-        films.add(new Film("Batman v Superman", 2016, false));
-        films.add(new Film("Suicide Squad", 2016, false));
-        films.add(new Film("Teenage Mutant Ninja Turtles", 2016, true));
+        films.add(new Film("Legend of Tarzan", 2016, true, true));
+        films.add(new Film("Zoomania", 2017, false,false));
+        films.add(new Film("Batman v Superman", 2016, false, false));
+        films.add(new Film("Suicide Squad", 2016, false,false));
+        films.add(new Film("Teenage Mutant Ninja Turtles", 2016, true,true));
         return films;
     }
 
     //fill comboBox categories
-    public void handle(){
-        categories.getItems().addAll("Action","Abenteuer", "Animation", "Drama", "Familie", "Fantasie",
+    public void handle() {
+        categories.getItems().addAll("Action", "Abenteuer", "Animation", "Drama", "Familie", "Fantasie",
                 "Historie", "Horror", "Kriegsfilm", "Krimi", "Komödie", "Liebesfilm", "Science Fiction");
     }
 
@@ -102,6 +118,7 @@ public class Controller implements Initializable {
 
     }
 }
+
 
 
 
