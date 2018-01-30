@@ -13,7 +13,6 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
-    public static Stage PrimeNet;
 
     public static void main(String[] args)
     {
@@ -26,8 +25,6 @@ public class Main extends Application {
         PrimeNet.setTitle("Login for PrimeNet");
         PrimeNet.setScene(new Scene(root, 300  , 300));
         PrimeNet.show();
-        this.PrimeNet = PrimeNet;
-
     }
 
 

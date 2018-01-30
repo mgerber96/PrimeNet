@@ -1,63 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.shape.Line?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<Pane style="-fx-background-color: #00FFFF#00FFFF;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PrimeNet.Controller">
-   <children>
-      <Text layoutX="340.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PrimeNet" textAlignment="CENTER" wrappingWidth="135.12890625">
-         <font>
-            <Font size="30.0" />
-         </font>
-      </Text>
-      <Line endY="430.0" layoutX="399.0" layoutY="69.0" startY="-10.0" />
-      <TableView fixedCellSize="0.0" layoutX="14.0" layoutY="254.0" prefHeight="237.0" prefWidth="376.0">
-        <columns>
-           <TableColumn fx:id="Fav" maxWidth="20.0" text="*" />
-          <TableColumn fx:id="Filmtitel" maxWidth="200.0" prefWidth="158.0" text="Filmtitel" />
-           <TableColumn fx:id="Kategorie" prefWidth="111.0" text="Kategorie" />
-          <TableColumn fx:id="Jahr" maxWidth="135.0" prefWidth="34.0" text="Jahr" />
-            <TableColumn fx:id="Merken" prefWidth="52.0" text="Merken" />
-            <TableColumn fx:id="Filmtitel1" maxWidth="200.0" prefWidth="158.0" text="Filmtitel" />
-        </columns>
-      </TableView>
-      <Line endY="420.0" layoutX="409.0" layoutY="79.0" startY="-20.0" />
-      <Text layoutX="23.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Suche:" wrappingWidth="42.87630081176758" />
-      <Text layoutX="22.0" layoutY="112.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Kategorie: " />
-      <ComboBox fx:id="categories" layoutX="127.0" layoutY="94.0" onMouseClicked="#fillCombo" prefHeight="27.0" prefWidth="227.0" promptText="Wähle eine Kategorie aus" />
-      <ImageView fitHeight="111.0" fitWidth="67.0" layoutX="410.0" layoutY="375.0" pickOnBounds="true" preserveRatio="true" />
-      <Button layoutX="295.0" layoutY="204.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="90.0" text="Suchen" />
-      <Button layoutX="18.0" layoutY="206.0" mnemonicParsing="false" text="Favoriten" />
-      <Button layoutX="164.0" layoutY="204.0" mnemonicParsing="false" text="Merkliste" />
-      <Label layoutX="450.0" layoutY="74.0" text="Filmtitel">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Label>
-      <Label layoutX="548.0" layoutY="78.0" text="(Jahr)">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <Label alignment="CENTER" layoutX="631.0" layoutY="77.0" prefHeight="255.0" prefWidth="155.0" style="-fx-background-color: #7FFF00#7FFF00;" text="Fimcover" />
-      <Label alignment="CENTER" contentDisplay="TOP" layoutX="427.0" layoutY="152.0" prefHeight="177.0" prefWidth="168.0" style="-fx-background-color: #E9967A#E9967A;" text="Handlung" />
-      <Label layoutX="416.0" layoutY="351.0" prefHeight="44.0" prefWidth="348.0" text="Hautdarsteller">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Label>
-      <Label layoutX="422.0" layoutY="378.0" prefHeight="105.0" prefWidth="107.0" text="Hauptdarsteller 1" />
-      <Label layoutX="545.0" layoutY="378.0" prefHeight="105.0" prefWidth="107.0" text="Hauptdarsteller 2" />
-      <Label layoutX="669.0" layoutY="378.0" prefHeight="105.0" prefWidth="107.0" text="Hauptdarsteller 3" />
-      <TextField layoutX="127.0" layoutY="61.0" prefHeight="27.0" prefWidth="227.0" promptText="Sucheingabe" />
-   </children>
-</Pane>
+<BorderPane xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PrimeNet.Controller">
+    <top>
+        <VBox prefHeight="122.0" prefWidth="731.0" BorderPane.alignment="CENTER">
+            <children>
+                <TitledPane animated="false" prefHeight="36.0" prefWidth="731.0" text="PrimeNet">
+                    <font>
+                        <Font name="System Bold Italic" size="18.0" />
+                    </font>
+                </TitledPane>
+                <HBox prefHeight="24.0" prefWidth="731.0" spacing="10.0">
+                    <children>
+                        <TextField fx:id="searchField" onAction="#onEnter" promptText="Suche" />
+                        <ComboBox fx:id="categories" onMouseClicked="#handle" prefWidth="150.0" promptText="Kategorien" />
+                        <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+                        <Button mnemonicParsing="false" text="Favoriten" />
+                        <Button mnemonicParsing="false" text="Merkliste" />
+                    </children>
+                    <VBox.margin>
+                        <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                    </VBox.margin>
+                </HBox>
+                <HBox prefHeight="27.0" prefWidth="731.0" />
+            </children>
+        </VBox>
+    </top>
+    <left>
+        <TableView fx:id="tableofFilm" prefWidth="375.0" BorderPane.alignment="CENTER_LEFT" />
+    </left>
+</BorderPane>

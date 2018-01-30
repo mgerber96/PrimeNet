@@ -11,6 +11,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -23,24 +24,26 @@ import java.util.ResourceBundle;
 public class Controller implements Initializable {
 
     @FXML
-    public ComboBox<String> categories;
-    public TableColumn Filmtitel;
-    public TableColumn Jahr;
-    public TableColumn Fav;
-    public TableColumn Merken;
     public Label LabelStatus;
+    @FXML
     public PasswordField TextPassword;
+    @FXML
     public TextField TextUserName;
-    public TableColumn Kategorie;
+    @FXML
+    ComboBox<String> categories;
+    @FXML
+    TextField searchField = new TextField();
+    @FXML
+    TableView<Product> tableofFilm = new TableView<>();
+    @FXML
+    TableColumn<Product, String> nameColumn = new TableColumn<>("Object");
+    @FXML
+    TableColumn<Product, Double> priceColumn = new TableColumn<>("Preis");
+    @FXML
+    TableColumn<Product, Integer> quantityColumn = new TableColumn<>("Anzahl");
 
-    //Die Combobox mit Kategorien füllen
-    public void fillCombo(){
-        categories.getItems().addAll("Action","Abenteuer", "Animation", "Drama", "Familie", "Fantasie",
-                "Historie", "Horror", "Kriegsfilm", "Krimi", "Komödie", "Liebesfilm", "Science Fiction");
-    }
 
-
-    //Methode zur Anmeldung
+    //login with username and password
     public void Login(javafx.event.ActionEvent event) throws Exception {
 
         if (TextUserName.getText().equals("") &&  TextPassword.getText().equals ("") ) {
@@ -48,21 +51,55 @@ public class Controller implements Initializable {
             LabelStatus.setText("Login Succesfull");
 
             Parent root = FXMLLoader.load(getClass().getResource("MainWindow.fxml"));
-            Main.PrimeNet.setTitle("PrimeNet");
-            Main.PrimeNet.setScene(new Scene(root, 800  , 600));
-            Main.PrimeNet.show();
+            Stage PrimeNet = new Stage();
+            PrimeNet.setTitle("PrimeNet");
+            PrimeNet.setScene(new Scene(root, 800  , 600));
+            PrimeNet.show();
 
         }else{ LabelStatus.setText("Login Failed");} }
 
-        //Methode für Reset-Button
-        public void Reset(javafx.event.ActionEvent event) {
+    //function of the reset button in login menu
+    public void Reset(javafx.event.ActionEvent event) {
 
         TextUserName.setText(null);
         TextPassword.setText(null);
         LabelStatus.setText("Login");
+    }
+
+    //if enter is pressed table of film will be filled
+    public void onEnter(){
+        System.out.println("sadfsad");
+        searchField.clear();
+
+        //nameColumn
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+
+        //priceColumn
+        priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
+
+        //quantityColumn
+        quantityColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));
+
+        tableofFilm.setItems(getProduct());
+        tableofFilm.getColumns().addAll(nameColumn, priceColumn, quantityColumn);
 
     }
 
+    public ObservableList<Product> getProduct(){
+        ObservableList<Product> products = FXCollections.observableArrayList();
+        products.add(new Product("Laptop", 859.00, 20));
+        products.add(new Product("Bouncy Ball", 2.49, 198));
+        products.add(new Product("Toilet", 99.00, 74));
+        products.add(new Product("The Notebook DVD", 19.99, 12));
+        products.add(new Product("Corn", 1.49, 856));
+        return products;
+    }
+
+    //fill comboBox categories
+    public void handle(){
+        categories.getItems().addAll("Action","Abenteuer", "Animation", "Drama", "Familie", "Fantasie",
+                "Historie", "Horror", "Kriegsfilm", "Krimi", "Komödie", "Liebesfilm", "Science Fiction");
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
