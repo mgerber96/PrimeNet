@@ -55,6 +55,7 @@ public class Controller implements Initializable {
             PrimeNet.setTitle("PrimeNet");
             PrimeNet.setScene(new Scene(root, 800  , 600));
             PrimeNet.show();
+            Main.Login.close();
 
         }else{ LabelStatus.setText("Login Failed");} }
 
