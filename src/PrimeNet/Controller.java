@@ -13,11 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import java.awt.*;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -34,13 +30,13 @@ public class Controller implements Initializable {
     @FXML
     TextField searchField = new TextField();
     @FXML
-    TableView<Product> tableofFilm = new TableView<>();
+    TableView<Film> tableofFilm = new TableView<>();
     @FXML
-    TableColumn<Product, String> nameColumn = new TableColumn<>("Object");
+    TableColumn<Film, String> titleColumn = new TableColumn<>("Film");
     @FXML
-    TableColumn<Product, Double> priceColumn = new TableColumn<>("Preis");
+    TableColumn<Film, Integer> yearColumn = new TableColumn<>("Jahr");
     @FXML
-    TableColumn<Product, Integer> quantityColumn = new TableColumn<>("Anzahl");
+    TableColumn<Film, Boolean> favouriteColumn = new TableColumn<>("Favorit");
 
 
     //login with username and password
@@ -69,31 +65,30 @@ public class Controller implements Initializable {
 
     //if enter is pressed table of film will be filled
     public void onEnter(){
-        System.out.println("sadfsad");
+        System.out.println("it works");
         searchField.clear();
 
-        //nameColumn
-        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        //titleColumn
+        titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
 
-        //priceColumn
-        priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
+        //yearColumn
+        yearColumn.setCellValueFactory(new PropertyValueFactory<>("year"));
 
-        //quantityColumn
-        quantityColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));
+        //favouriteColumn
+        favouriteColumn.setCellValueFactory(new PropertyValueFactory<>("favourite"));
 
-        tableofFilm.setItems(getProduct());
-        tableofFilm.getColumns().addAll(nameColumn, priceColumn, quantityColumn);
-
+        tableofFilm.setItems(getFilm());
+        tableofFilm.getColumns().addAll(titleColumn, yearColumn, favouriteColumn);
     }
 
-    public ObservableList<Product> getProduct(){
-        ObservableList<Product> products = FXCollections.observableArrayList();
-        products.add(new Product("Laptop", 859.00, 20));
-        products.add(new Product("Bouncy Ball", 2.49, 198));
-        products.add(new Product("Toilet", 99.00, 74));
-        products.add(new Product("The Notebook DVD", 19.99, 12));
-        products.add(new Product("Corn", 1.49, 856));
-        return products;
+    public ObservableList<Film> getFilm(){
+        ObservableList<Film> films = FXCollections.observableArrayList();
+        films.add(new Film("Legend of Tarzan", 2016, true));
+        films.add(new Film("Zoomania", 2017, false));
+        films.add(new Film("Batman v Superman", 2016, false));
+        films.add(new Film("Suicide Squad", 2016, false));
+        films.add(new Film("Teenage Mutant Ninja Turtles", 2016, true));
+        return films;
     }
 
     //fill comboBox categories
