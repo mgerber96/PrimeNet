@@ -27,9 +27,10 @@ public class Controller implements Initializable {
     @FXML
     public TextField TextUserName;
     @FXML
-    ComboBox<String> categories;
+    ComboBox<String> categoriesComboBox;
     @FXML
     TextField searchField = new TextField();
+    TableView<Film> originalTableofFilm = new TableView();
     @FXML
     TableView<Film> tableofFilm = new TableView<>();
     @FXML
@@ -37,15 +38,17 @@ public class Controller implements Initializable {
     @FXML
     TableColumn<Film, Integer> yearColumn = new TableColumn<>("Jahr");
     @FXML
+    TableColumn<Film, Boolean> favouriteColumn = new TableColumn<>("Favorit");
+    @FXML
     TableColumn<Film, Boolean> checkboxColumn = new TableColumn<>("Checkbox");
-
+    ComboBox<Integer> yearComboBox = new ComboBox<>();
 
 
 
     //login with username and password
     public void Login(javafx.event.ActionEvent event) throws Exception {
 
-        if (TextUserName.getText().equals("") && TextPassword.getText().equals("")) {
+        if (TextUserName.getText().equals("") &&  TextPassword.getText().equals ("") ) {
 
             LabelStatus.setText("Login Succesfull");
 
@@ -56,7 +59,7 @@ public class Controller implements Initializable {
             PrimeNet.show();
             Main.Login.close();
 
-        } else {
+        }else {
             LabelStatus.setText("Login Failed");
         }
     }
@@ -88,6 +91,7 @@ public class Controller implements Initializable {
         checkboxColumn.setEditable(true);
 
 
+        originalTableofFilm.setItems(getFilm());
         tableofFilm.setItems(getFilm());
         tableofFilm.getColumns().addAll(titleColumn, yearColumn, checkboxColumn);
     }
@@ -102,9 +106,28 @@ public class Controller implements Initializable {
         return films;
     }
 
-    //fill comboBox categories
-    public void handle() {
-        categories.getItems().addAll("Action", "Abenteuer", "Animation", "Drama", "Familie", "Fantasie",
+    //fill yearComboBox
+    public void fillyearComboBox(){
+        yearComboBox.getItems().addAll(2015,2016,2017);
+        yearComboBox.setOnAction(e -> filterTableView(yearComboBox.getValue()));
+    }
+
+    //filter tableView list according to selected year
+    public void filterTableView(int i){
+        ObservableList<Film> allFilms, selectedYearFilms;
+        allFilms = originalTableofFilm.getItems();
+        selectedYearFilms = FXCollections.observableArrayList();
+        for (Film s : allFilms){
+            if (s.getYear() == i){
+                selectedYearFilms.add(s);
+            }
+        }
+        tableofFilm.setItems(selectedYearFilms);
+    }
+
+    //fill categoriesComboBox
+    public void fillcategoriesComboBox(){
+        categoriesComboBox.getItems().addAll("Action","Abenteuer", "Animation", "Drama", "Familie", "Fantasie",
                 "Historie", "Horror", "Kriegsfilm", "Krimi", "Komödie", "Liebesfilm", "Science Fiction");
     }
 
@@ -113,7 +136,6 @@ public class Controller implements Initializable {
 
     }
 }
-
 
 
 
