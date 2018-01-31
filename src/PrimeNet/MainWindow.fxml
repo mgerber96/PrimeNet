@@ -3,7 +3,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.TitledPane?>
@@ -13,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PrimeNet.Controller">
+<BorderPane xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PrimeNet.Controller">
     <top>
         <VBox prefHeight="122.0" prefWidth="731.0" BorderPane.alignment="CENTER">
             <children>
@@ -25,7 +24,7 @@
                 <HBox prefHeight="24.0" prefWidth="731.0" spacing="10.0">
                     <children>
                         <TextField fx:id="searchField" onAction="#onEnter" promptText="Suche" />
-                  <ComboBox fx:id="yearComboBox" editable="true" prefWidth="150.0" promptText="Jahr" />
+                  <ComboBox fx:id="yearComboBox" editable="true" onAction="#clickYearComboBox" prefWidth="150.0" promptText="Jahr" />
                         <ComboBox fx:id="categoriesComboBox" prefWidth="150.0" promptText="Kategorien" />
                         <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
                         <Button mnemonicParsing="false" text="Favoriten" />
@@ -42,11 +41,4 @@
     <left>
         <TableView fx:id="tableofFilm" prefWidth="375.0" BorderPane.alignment="CENTER_LEFT" />
     </left>
-   <center>
-      <Label fx:id="Labelmoviename" text="Label" BorderPane.alignment="CENTER">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Label>
-   </center>
 </BorderPane>
