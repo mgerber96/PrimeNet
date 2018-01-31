@@ -5,27 +5,29 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 public class Film {
+    private  SimpleBooleanProperty favourite;
     private SimpleStringProperty title;
     private SimpleIntegerProperty year;
-    private SimpleBooleanProperty checkbox;
+    private SimpleBooleanProperty remember;
 
-    public Film(String title, int year, boolean checkbox ){
+    public Film(boolean favourite, String title, int year, boolean remember){
+        this.favourite = new SimpleBooleanProperty(favourite);
         this.title = new SimpleStringProperty(title);
         this.year = new SimpleIntegerProperty(year);
-        this.checkbox = new SimpleBooleanProperty(checkbox) ;
+        this.remember = new SimpleBooleanProperty(remember) ;
     }
 
 
-    public boolean isCheckbox() {
-        return checkbox.get();
+    public boolean getRemember() {
+        return remember.get();
     }
 
-    public SimpleBooleanProperty checkboxProperty() {
-        return checkbox;
+    public SimpleBooleanProperty rememberProperty() {
+        return remember;
     }
 
-    public void setCheckbox(boolean checkbox) {
-        this.checkbox.set(checkbox);
+    public void setRemember(boolean remember) {
+        this.remember.set(remember);
     }
 
     public String getTitle() {
@@ -50,5 +52,17 @@ public class Film {
 
     public void setYear(int year) {
         this.year.set(year);
+    }
+
+    public boolean isFavourite() {
+        return favourite.get();
+    }
+
+    public SimpleBooleanProperty favouriteProperty() {
+        return favourite;
+    }
+
+    public void setFavourite(boolean favourite) {
+        this.favourite.set(favourite);
     }
 }
