@@ -100,6 +100,16 @@ public class Controller{
 
     }
 
+        /*
+        AutoCompletionBinding<MovieData> autoCompletionBinding =
+                TextFields.bindAutoCompletion(searchField,
+                        suggestionRequest -> MovieData. );
+        autoCompletionBinding.setOnAutoCompleted(event -> {
+            cities.add(event.getCompletion());
+            searchField.clear();
+            saveCitiesToDisk();
+        });*/
+
     @FXML
     private void initialize(){
         setUpEverything();
