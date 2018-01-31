@@ -2,6 +2,7 @@ package PrimeNet;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -13,12 +14,23 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class Controller{
+
+public class Controller implements Initializable {
+
+    @FXML
+    public Label LabelStatus;
+    @FXML
+    public PasswordField TextPassword;
+    @FXML
+    public TextField TextUserName;
+    @FXML
+    public Label Labelmoviename;
     @FXML
     ComboBox<String> categoriesComboBox;
     @FXML
@@ -31,19 +43,43 @@ public class Controller{
     @FXML
     TableColumn<Film, Integer> yearColumn = new TableColumn<>("Jahr");
     @FXML
-    TableColumn<Film, Boolean> favouriteColumn = new TableColumn<>("Favorit");
-    @FXML
     TableColumn<Film, Boolean> checkboxColumn = new TableColumn<>("Checkbox");
-    @FXML
     ComboBox<Integer> yearComboBox = new ComboBox<>();
 
-    public void setUpEverything(){
-        categoriesComboBox.getItems().addAll("Action","Abenteuer", "Animation", "Drama", "Familie", "Fantasie",
-                "Historie", "Horror", "Kriegsfilm", "Krimi", "Komödie", "Liebesfilm", "Science Fiction");
+
+
+    //login with username and password
+    public void Login(javafx.event.ActionEvent event) throws Exception {
+
+        if (TextUserName.getText().equals("") &&  TextPassword.getText().equals ("") ) {
+
+            LabelStatus.setText("Login Succesfull");
+
+            Parent root = FXMLLoader.load(getClass().getResource("MainWindow.fxml"));
+            Stage PrimeNet = new Stage();
+            PrimeNet.setTitle("PrimeNet");
+            PrimeNet.setScene(new Scene(root, 800, 600));
+            PrimeNet.show();
+            Main.Login.close();
+
+
+
+        }else {
+            LabelStatus.setText("Login Failed");
+        }
+    }
+
+    //function of the reset button in login menu
+    public void Reset(javafx.event.ActionEvent event) {
+
+        TextUserName.setText(null);
+        TextPassword.setText(null);
+        LabelStatus.setText("Login");
     }
 
     //if enter is pressed table of film will be filled
     public void onEnter() {
+
         tableofFilm.setEditable(true);
         System.out.println("it works");
         searchField.clear();
@@ -54,7 +90,6 @@ public class Controller{
         //yearColumn
         yearColumn.setCellValueFactory(new PropertyValueFactory<>("year"));
 
-
         //checkboxColumn
         checkboxColumn.setCellValueFactory(new PropertyValueFactory<>("checkbox"));
         checkboxColumn.setCellFactory(CheckBoxTableCell.forTableColumn(checkboxColumn));
@@ -64,7 +99,20 @@ public class Controller{
         originalTableofFilm.setItems(getFilm());
         tableofFilm.setItems(getFilm());
         tableofFilm.getColumns().addAll(titleColumn, yearColumn, checkboxColumn);
+
+
+
+        /*//detect double click on item
+        tableofFilm.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent doubleclick) {
+                if (doubleclick.isPrimaryButtonDown() && doubleclick.getClickCount() == 2) {
+                    Labelmoviename.setText()}
+
+            }
+        });*/
     }
+
 
     public ObservableList<Film> getFilm() {
         ObservableList<Film> films = FXCollections.observableArrayList();
@@ -97,13 +145,17 @@ public class Controller{
 
     //fill categoriesComboBox
     public void fillcategoriesComboBox(){
+        categoriesComboBox.getItems().addAll("Action","Abenteuer", "Animation", "Drama", "Familie", "Fantasie",
+                "Historie", "Horror", "Kriegsfilm", "Krimi", "Komödie", "Liebesfilm", "Science Fiction");
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
+
 
     }
 
-    @FXML
-    private void initialize(){
-        setUpEverything();
-    }
 }
 
 
