@@ -37,8 +37,6 @@ public class Controller implements Initializable {
     @FXML
     TableColumn<Film, Integer> yearColumn = new TableColumn<>("Jahr");
     @FXML
-    TableColumn<Film, Boolean> favouriteColumn = new TableColumn<>("Favorit");
-    @FXML
     TableColumn<Film, Boolean> checkboxColumn = new TableColumn<>("Checkbox");
 
 
@@ -73,6 +71,7 @@ public class Controller implements Initializable {
 
     //if enter is pressed table of film will be filled
     public void onEnter() {
+        tableofFilm.setEditable(true);
         System.out.println("it works");
         searchField.clear();
 
@@ -82,10 +81,6 @@ public class Controller implements Initializable {
         //yearColumn
         yearColumn.setCellValueFactory(new PropertyValueFactory<>("year"));
 
-        //favouriteColumn
-        favouriteColumn.setCellValueFactory(new PropertyValueFactory<>("favourite"));
-        favouriteColumn.setCellFactory(CheckBoxTableCell.forTableColumn(favouriteColumn));
-        favouriteColumn.setEditable(true);
 
         //checkboxColumn
         checkboxColumn.setCellValueFactory(new PropertyValueFactory<>("checkbox"));
@@ -94,16 +89,16 @@ public class Controller implements Initializable {
 
 
         tableofFilm.setItems(getFilm());
-        tableofFilm.getColumns().addAll(titleColumn, yearColumn, favouriteColumn, checkboxColumn);
+        tableofFilm.getColumns().addAll(titleColumn, yearColumn, checkboxColumn);
     }
 
     public ObservableList<Film> getFilm() {
         ObservableList<Film> films = FXCollections.observableArrayList();
-        films.add(new Film("Legend of Tarzan", 2016, true, true));
-        films.add(new Film("Zoomania", 2017, false,false));
-        films.add(new Film("Batman v Superman", 2016, false, false));
-        films.add(new Film("Suicide Squad", 2016, false,false));
-        films.add(new Film("Teenage Mutant Ninja Turtles", 2016, true,true));
+        films.add(new Film("Legend of Tarzan", 2016, false));
+        films.add(new Film("Zoomania", 2017, false));
+        films.add(new Film("Batman v Superman", 2016, false));
+        films.add(new Film("Suicide Squad", 2016, false));
+        films.add(new Film("Teenage Mutant Ninja Turtles", 2016, false));
         return films;
     }
 

@@ -1,42 +1,18 @@
 package PrimeNet;
 
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
 
 public class Film {
-    private String title;
-    private int year;
-    private boolean favourite;
+    private SimpleStringProperty title;
+    private SimpleIntegerProperty year;
     private SimpleBooleanProperty checkbox;
 
-    public Film(String title, int year, boolean favourite, boolean checkbox ){
-        this.title = title;
-        this.year = year;
-        this.favourite = favourite;
+    public Film(String title, int year, boolean checkbox ){
+        this.title = new SimpleStringProperty(title);
+        this.year = new SimpleIntegerProperty(year);
         this.checkbox = new SimpleBooleanProperty(checkbox) ;
-    }
-
-    public String getTitle(){
-        return title;
-    }
-
-    public void setTitle(String title){
-        this.title = title;
-    }
-
-    public int getYear(){
-        return year;
-    }
-
-    public void setYear(int year){
-        this.year = year;
-    }
-
-    public boolean isFavourite(){
-        return favourite;
-    }
-
-    public void setFavourite(boolean favourite){
-        this.favourite = favourite;
     }
 
 
@@ -50,5 +26,29 @@ public class Film {
 
     public void setCheckbox(boolean checkbox) {
         this.checkbox.set(checkbox);
+    }
+
+    public String getTitle() {
+        return title.get();
+    }
+
+    public SimpleStringProperty titleProperty() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title.set(title);
+    }
+
+    public int getYear() {
+        return year.get();
+    }
+
+    public SimpleIntegerProperty yearProperty() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year.set(year);
     }
 }
