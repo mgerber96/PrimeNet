@@ -27,6 +27,9 @@ public class Main extends Application {
         Login.setTitle("Login for PrimeNet");
         Login.setScene(new Scene(root, 300  , 300));
         Login.show();
+
+
+
     }
 
 

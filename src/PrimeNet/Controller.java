@@ -2,6 +2,7 @@ package PrimeNet;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -14,9 +15,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-
 import java.net.URL;
 import java.util.ResourceBundle;
+
 
 public class Controller implements Initializable {
 
@@ -37,8 +38,6 @@ public class Controller implements Initializable {
     TableColumn<Film, String> titleColumn = new TableColumn<>("Film");
     @FXML
     TableColumn<Film, Integer> yearColumn = new TableColumn<>("Jahr");
-    @FXML
-    TableColumn<Film, Boolean> favouriteColumn = new TableColumn<>("Favorit");
     @FXML
     TableColumn<Film, Boolean> checkboxColumn = new TableColumn<>("Checkbox");
     ComboBox<Integer> yearComboBox = new ComboBox<>();
@@ -74,6 +73,7 @@ public class Controller implements Initializable {
 
     //if enter is pressed table of film will be filled
     public void onEnter() {
+
         tableofFilm.setEditable(true);
         System.out.println("it works");
         searchField.clear();
@@ -95,6 +95,7 @@ public class Controller implements Initializable {
         tableofFilm.setItems(getFilm());
         tableofFilm.getColumns().addAll(titleColumn, yearColumn, checkboxColumn);
     }
+
 
     public ObservableList<Film> getFilm() {
         ObservableList<Film> films = FXCollections.observableArrayList();
@@ -135,6 +136,7 @@ public class Controller implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
     }
+
 }
 
 
