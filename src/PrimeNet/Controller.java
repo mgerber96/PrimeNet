@@ -31,7 +31,7 @@ public class Controller{
     @FXML
     TableColumn<Film, Boolean> rememberColumn = new TableColumn<>("Merken");
     @FXML
-    ComboBox<Integer> yearComboBox = new ComboBox<>();
+    ComboBox<String> yearComboBox = new ComboBox<>();
     @FXML
     private ObservableList<String> rate = FXCollections.observableArrayList();
 
@@ -39,7 +39,6 @@ public class Controller{
     @FXML
     private void initialize(){
         setUpEverything();
-
         rate.addAll("Like", "Dislike");
     }
 
@@ -55,7 +54,7 @@ public class Controller{
     }
 
     public void fillYearComboBox(){
-        yearComboBox.getItems().addAll(2015,2016,2017);
+        yearComboBox.getItems().addAll("Alle", "2015","2016","2017");
     }
 
     public void setUpTableOfFilm() {
@@ -115,16 +114,23 @@ public class Controller{
     public void clickYearComboBox(){
         filterTableView(yearComboBox.getValue());
     }
+
     //filter tableView list according to selected year
-    public void filterTableView(int i){
+    public void filterTableView(String yearOfComboBox){
         ObservableList<Film> allFilms, selectedYearFilms;
+        selectedYearFilms = null;
         allFilms = originalTableofFilm.getItems();
         selectedYearFilms = FXCollections.observableArrayList();
-        for (Film s : allFilms){
-            if (s.getYear() == i){
-                selectedYearFilms.add(s);
+        if(yearOfComboBox.equals("Alle"))
+            selectedYearFilms = allFilms;
+        else{
+            for (Film s : allFilms){
+                if (s.getYear() == Integer.parseInt(yearOfComboBox)){
+                    selectedYearFilms.add(s);
+                }
             }
         }
+
         tableofFilm.setItems(selectedYearFilms);
     }
 
