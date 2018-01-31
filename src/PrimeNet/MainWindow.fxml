@@ -25,7 +25,7 @@
                 <HBox prefHeight="24.0" prefWidth="731.0" spacing="10.0">
                     <children>
                         <TextField fx:id="searchField" onAction="#onEnter" promptText="Suche" />
-                  <ComboBox fx:id="yearComboBox" editable="true" onMouseClicked="#fillyearComboBox" prefWidth="150.0" promptText="Jahr" />
+                  <ComboBox fx:id="yearComboBox" editable="true" prefWidth="150.0" promptText="Jahr" />
                         <ComboBox fx:id="categoriesComboBox" prefWidth="150.0" promptText="Kategorien" />
                         <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
                         <Button mnemonicParsing="false" text="Favoriten" />

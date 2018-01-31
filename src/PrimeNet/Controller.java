@@ -13,10 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
 
-import java.net.URL;
-import java.util.ResourceBundle;
 
 public class Controller{
     @FXML
@@ -31,22 +28,32 @@ public class Controller{
     @FXML
     TableColumn<Film, Integer> yearColumn = new TableColumn<>("Jahr");
     @FXML
-    TableColumn<Film, Boolean> favouriteColumn = new TableColumn<>("Favorit");
-    @FXML
     TableColumn<Film, Boolean> checkboxColumn = new TableColumn<>("Checkbox");
     @FXML
     ComboBox<Integer> yearComboBox = new ComboBox<>();
 
+    @FXML
+    private void initialize(){
+        setUpEverything();
+    }
+
     public void setUpEverything(){
+        fillCategoriesComboBox();
+        fillYearComboBox();
+        setUpTableOfFilm();
+    }
+
+    public void fillCategoriesComboBox(){
         categoriesComboBox.getItems().addAll("Action","Abenteuer", "Animation", "Drama", "Familie", "Fantasie",
                 "Historie", "Horror", "Kriegsfilm", "Krimi", "Komödie", "Liebesfilm", "Science Fiction");
     }
 
-    //if enter is pressed table of film will be filled
-    public void onEnter() {
+    public void fillYearComboBox(){
+        yearComboBox.getItems().addAll(2015,2016,2017);
+    }
+
+    public void setUpTableOfFilm() {
         tableofFilm.setEditable(true);
-        System.out.println("it works");
-        searchField.clear();
 
         //titleColumn
         titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
@@ -54,13 +61,15 @@ public class Controller{
         //yearColumn
         yearColumn.setCellValueFactory(new PropertyValueFactory<>("year"));
 
-
         //checkboxColumn
         checkboxColumn.setCellValueFactory(new PropertyValueFactory<>("checkbox"));
         checkboxColumn.setCellFactory(CheckBoxTableCell.forTableColumn(checkboxColumn));
         checkboxColumn.setEditable(true);
+    }
 
-
+    //if enter is pressed table of film will be filled with new content
+    public void onEnter() {
+        searchField.clear();
         originalTableofFilm.setItems(getFilm());
         tableofFilm.setItems(getFilm());
         tableofFilm.getColumns().addAll(titleColumn, yearColumn, checkboxColumn);
@@ -88,12 +97,6 @@ public class Controller{
         return films;
     }
 
-    //fill yearComboBox
-    public void fillyearComboBox(){
-        yearComboBox.getItems().addAll(2015,2016,2017);
-        yearComboBox.setOnAction(e -> filterTableView(yearComboBox.getValue()));
-    }
-
     //filter tableView list according to selected year
     public void filterTableView(int i){
         ObservableList<Film> allFilms, selectedYearFilms;
@@ -107,10 +110,6 @@ public class Controller{
         tableofFilm.setItems(selectedYearFilms);
     }
 
-    //fill categoriesComboBox
-    public void fillcategoriesComboBox(){
-
-    }
 
         /*
         AutoCompletionBinding<MovieData> autoCompletionBinding =
@@ -122,10 +121,7 @@ public class Controller{
             saveCitiesToDisk();
         });*/
 
-    @FXML
-    private void initialize(){
-        setUpEverything();
-    }
+
 }
 
 

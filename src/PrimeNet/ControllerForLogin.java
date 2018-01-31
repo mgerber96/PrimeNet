@@ -20,14 +20,12 @@ public class ControllerForLogin {
     @FXML
     public TextField TextUserName;
 
-
     //login with username and password
     public void Login(javafx.event.ActionEvent event) throws Exception {
 
         if (TextUserName.getText().equals("") &&  TextPassword.getText().equals ("") ) {
 
             LabelStatus.setText("Login Successful");
-
             Parent root = FXMLLoader.load(getClass().getResource("MainWindow.fxml"));
             Stage PrimeNet = new Stage();
             PrimeNet.setTitle("PrimeNet");
@@ -41,7 +39,6 @@ public class ControllerForLogin {
 
     //function of the reset button in login menu
     public void Reset(javafx.event.ActionEvent event) {
-
         TextUserName.setText(null);
         TextPassword.setText(null);
         LabelStatus.setText("Login");
