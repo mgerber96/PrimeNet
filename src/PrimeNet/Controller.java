@@ -13,10 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
 
-import java.net.URL;
-import java.util.ResourceBundle;
 
 public class Controller{
     @FXML
@@ -31,11 +28,14 @@ public class Controller{
     @FXML
     TableColumn<Film, Integer> yearColumn = new TableColumn<>("Jahr");
     @FXML
-    TableColumn<Film, Boolean> favouriteColumn = new TableColumn<>("Favorit");
-    @FXML
     TableColumn<Film, Boolean> checkboxColumn = new TableColumn<>("Checkbox");
     @FXML
     ComboBox<Integer> yearComboBox = new ComboBox<>();
+
+    @FXML
+    private void initialize(){
+        setUpEverything();
+    }
 
     public void setUpEverything(){
         categoriesComboBox.getItems().addAll("Action","Abenteuer", "Animation", "Drama", "Familie", "Fantasie",
@@ -110,10 +110,7 @@ public class Controller{
             saveCitiesToDisk();
         });*/
 
-    @FXML
-    private void initialize(){
-        setUpEverything();
-    }
+
 }
 
 

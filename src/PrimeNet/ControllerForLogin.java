@@ -20,7 +20,6 @@ public class ControllerForLogin {
     @FXML
     public TextField TextUserName;
 
-
     //login with username and password
     public void Login(javafx.event.ActionEvent event) throws Exception {
 
@@ -41,7 +40,6 @@ public class ControllerForLogin {
 
     //function of the reset button in login menu
     public void Reset(javafx.event.ActionEvent event) {
-
         TextUserName.setText(null);
         TextPassword.setText(null);
         LabelStatus.setText("Login");
