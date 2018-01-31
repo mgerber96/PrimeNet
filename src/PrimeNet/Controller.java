@@ -80,9 +80,6 @@ public class Controller{
         //rateColumn
         rateColumn.setCellValueFactory(new PropertyValueFactory<>("rate"));
         rateColumn.setCellFactory(ComboBoxTableCell.forTableColumn(new DefaultStringConverter(),rate));
-
-
-
     }
 
     //if enter is pressed table of film will be filled with new content
@@ -115,6 +112,9 @@ public class Controller{
         return films;
     }
 
+    public void clickYearComboBox(){
+        filterTableView(yearComboBox.getValue());
+    }
     //filter tableView list according to selected year
     public void filterTableView(int i){
         ObservableList<Film> allFilms, selectedYearFilms;
