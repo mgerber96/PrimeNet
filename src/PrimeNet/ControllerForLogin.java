@@ -26,7 +26,6 @@ public class ControllerForLogin {
         if (TextUserName.getText().equals("") &&  TextPassword.getText().equals ("") ) {
 
             LabelStatus.setText("Login Successful");
-
             Parent root = FXMLLoader.load(getClass().getResource("MainWindow.fxml"));
             Stage PrimeNet = new Stage();
             PrimeNet.setTitle("PrimeNet");
