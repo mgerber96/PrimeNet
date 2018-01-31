@@ -40,7 +40,7 @@
         </VBox>
     </top>
     <left>
-        <TableView fx:id="tableofFilm" prefWidth="375.0" BorderPane.alignment="CENTER_LEFT" />
+        <TableView fx:id="tableofFilm" prefHeight="400.0" prefWidth="546.0" BorderPane.alignment="CENTER_LEFT" />
     </left>
    <center>
       <Label fx:id="Labelmoviename" text="Label" BorderPane.alignment="CENTER">

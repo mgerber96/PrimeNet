@@ -9,12 +9,14 @@ public class Film {
     private SimpleStringProperty title;
     private SimpleIntegerProperty year;
     private SimpleBooleanProperty remember;
+    private SimpleStringProperty rate;
 
-    public Film(boolean favourite, String title, int year, boolean remember){
+    public Film(boolean favourite, String title, int year, boolean remember, String rate){
         this.favourite = new SimpleBooleanProperty(favourite);
         this.title = new SimpleStringProperty(title);
         this.year = new SimpleIntegerProperty(year);
         this.remember = new SimpleBooleanProperty(remember) ;
+        this.rate = new SimpleStringProperty(rate);
     }
 
 
@@ -64,5 +66,17 @@ public class Film {
 
     public void setFavourite(boolean favourite) {
         this.favourite.set(favourite);
+    }
+
+    public String getRate() {
+        return rate.get();
+    }
+
+    public SimpleStringProperty rateProperty() {
+        return rate;
+    }
+
+    public void setRate(String rate) {
+        this.rate.set(rate);
     }
 }

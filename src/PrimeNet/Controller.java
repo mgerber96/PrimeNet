@@ -7,7 +7,9 @@ import javafx.scene.control.*;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.CheckBoxTableCell;
+import javafx.scene.control.cell.ComboBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.util.converter.DefaultStringConverter;
 
 
 public class Controller{
@@ -28,10 +30,18 @@ public class Controller{
     TableColumn<Film, Boolean> rememberColumn = new TableColumn<>("Merken");
     @FXML
     ComboBox<Integer> yearComboBox = new ComboBox<>();
+    @FXML
+    TableColumn<Film, String> rateColumn = new TableColumn<>("Bewertung");
+    @FXML
+    private ObservableList<String> rating = FXCollections.observableArrayList();
+
 
     @FXML
-    private void initialize(){
+    public void initialize(){
         setUpEverything();
+        rating.addAll("Like", "Dislike");
+
+
     }
 
     public void setUpEverything(){
@@ -59,14 +69,18 @@ public class Controller{
         yearColumn.setCellValueFactory(new PropertyValueFactory<>("year"));
 
         //rememberColumn
-        rememberColumn.setCellValueFactory(new PropertyValueFactory<>("Merken"));
+        rememberColumn.setCellValueFactory(new PropertyValueFactory<>("remember"));
         rememberColumn.setCellFactory(CheckBoxTableCell.forTableColumn(rememberColumn));
         rememberColumn.setEditable(true);
 
         //favouriteColumn
-        favouriteColumn.setCellValueFactory(new PropertyValueFactory<>("Favorit"));
+        favouriteColumn.setCellValueFactory(new PropertyValueFactory<>("favourite"));
         favouriteColumn.setCellFactory(CheckBoxTableCell.forTableColumn(favouriteColumn));
         favouriteColumn.setEditable(true);
+
+        //rateColumn
+        rateColumn.setCellValueFactory(new PropertyValueFactory<>("rate"));
+        rateColumn.setCellFactory(ComboBoxTableCell.forTableColumn(new DefaultStringConverter(),rating));
 
     }
 
@@ -75,7 +89,7 @@ public class Controller{
         searchField.clear();
         originalTableofFilm.setItems(getFilm());
         tableofFilm.setItems(getFilm());
-        tableofFilm.getColumns().addAll(favouriteColumn, titleColumn, yearColumn, rememberColumn);
+        tableofFilm.getColumns().addAll(favouriteColumn, titleColumn, yearColumn, rememberColumn,rateColumn);
 
 
 
@@ -92,11 +106,11 @@ public class Controller{
 
     public ObservableList<Film> getFilm() {
         ObservableList<Film> films = FXCollections.observableArrayList();
-        films.add(new Film(false, "Legend of Tarzan", 2016, false));
-        films.add(new Film(false, "Zoomania", 2017, false));
-        films.add(new Film(false, "Batman v Superman", 2016, false));
-        films.add(new Film(false, "Suicide Squad", 2016, false));
-        films.add(new Film(false, "Teenage Mutant Ninja Turtles", 2016, false));
+        films.add(new Film(false, "Legend of Tarzan", 2016, false, "      -"));
+        films.add(new Film(false, "Zoomania", 2017, false,  "      -" ));
+        films.add(new Film(false, "Batman v Superman", 2016, false,"      -" ));
+        films.add(new Film(false, "Suicide Squad", 2016, false,"      -" ));
+        films.add(new Film(false, "Teenage Mutant Ninja Turtles", 2016, false,"      -"));
         return films;
     }
 
