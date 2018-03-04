@@ -39,6 +39,10 @@ public class ControllerCreateUser {
         boolean written = false;
         try (BufferedWriter writer = Files.newBufferedWriter(Paths.get("passwords.txt"))) {
             for (String line : lines) {
+                if (line.trim().isEmpty()) {
+                    continue;
+                }
+
                 String[] parts = line.split(":");
                 if (parts.length != 3) {
                     writer.write(line);
